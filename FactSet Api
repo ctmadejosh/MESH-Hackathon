@@ -1,0 +1,51 @@
+import requests
+
+import json
+
+import streamlit as st
+
+ 
+
+ticker = 'AAPL'
+
+url = f'https://api.factset.com/report/overview/v1/profile?id={ticker}'
+
+ 
+
+# Set up the headers dictionary to include the API key
+
+headers = {
+
+    "X-Lima-Created": "1716472735",
+
+    "X-Lima-Expiration": "1716501535",
+
+    "X-Lima-Original-Serial": "FDS",
+
+    "X-Lima-Original-Username": "TARTURI",
+
+    "X-Lima-Serial": "FDS",
+
+    "X-Lima-Username": "TARTURI",
+
+    "X-Lima-Userstate": "INTERNAL",
+
+    "X-Lima-Usertype": "EMPLOYEE",
+
+    "X-Limasig-Dsa1024": "MC0CFENfQWmjCwmk6eCRFVbEV/j+YulpAhUAjBq3VAIQObBVn6Km4X+FuzC1pO4=",
+
+    "X-Datadirect-Auth-Token": "tdchc80CzV2OtGONQKwF6lrdu3g7FJT0IzLHCGvCImYWrDwtnLaO9KxxVaGDOfaq"
+
+}
+
+ 
+
+# Make the GET request
+
+response = requests.get(url, headers=headers)
+
+ 
+
+data = response.json()
+
+st.write(data)

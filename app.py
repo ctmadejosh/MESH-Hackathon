@@ -14,11 +14,14 @@ import json
 
  
 
-# Load env variables
-
-load_dotenv(find_dotenv())
-
 os.environ["SSL_CERT_FILE"] = os.getenv("REQUESTS_CA_BUNDLE")
+
+# Load env variables
+load_dotenv(find_dotenv())
+# Only set SSL_CERT_FILE if REQUESTS_CA_BUNDLE is set
+requests_ca_bundle = os.getenv("REQUESTS_CA_BUNDLE")
+if requests_ca_bundle:
+    os.environ["SSL_CERT_FILE"] = requests_ca_bundle
 
 OPEN_API_KEY = os.getenv("OPENAI_API_KEY")
 
